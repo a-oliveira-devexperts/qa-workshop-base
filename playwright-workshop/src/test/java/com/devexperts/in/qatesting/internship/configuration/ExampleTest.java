@@ -1,4 +1,4 @@
-package org.example;
+package com.devexperts.in.qatesting.internship.configuration;
 
 import org.junit.jupiter.api.Test;
 
