@@ -13,8 +13,6 @@ jobs:
     defaults:
       run:
         working-directory: ${{ github.workspace }}/playwright-workshop
-    permissions:
-      contents: read
 
     steps:
       - uses: actions/checkout@v4
