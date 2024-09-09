@@ -32,9 +32,6 @@ jobs:
   BuildAndTest:
     name: 'Build and test'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ github.workspace }}/playwright-workshop
     needs:
       - 'PreInstall'
 
@@ -45,9 +42,6 @@ jobs:
   PublishTestReport:
     name: 'Publish test report'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ github.workspace }}/playwright-workshop
     needs:
       - 'PreInstall'
       - 'BuildAndTest'
