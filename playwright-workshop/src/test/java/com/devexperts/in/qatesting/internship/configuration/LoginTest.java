@@ -15,7 +15,7 @@ public class LoginTest {
         //Create Playwright
         Playwright playwright = Playwright.create();
         //Create Browser
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Browser browser = playwright.chromium().launch();
         //Create Page
         Page page = browser.newPage();
         page.navigate("https://qa-testing.in.devexperts.com/internship/");
