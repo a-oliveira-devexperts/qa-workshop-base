@@ -1,6 +1,8 @@
 plugins {
     id 'java'
-    id 'com.adarshr.test-logger' version '4.0.0' // dirty hook for logging
+    // dirty hook for logging test results
+    // TODO: remove once allure report is added to build results
+    id 'com.adarshr.test-logger' version '4.0.0'
 }
 
 group = 'org.example'
