@@ -21,6 +21,14 @@ dependencies {
     testImplementation "io.qameta.allure:allure-junit5:$allureVersion"
 }
 
+tasks.register('buildDeps', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.microsoft.playwright.CLI'
+    args = ['install-deps']
+}
+
+
 test {
+    dependsOn buildDeps
     useJUnitPlatform()
 }
