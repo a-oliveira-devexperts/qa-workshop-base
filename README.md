@@ -1,4 +1,4 @@
-# QA Performance Workshop Base
+# QA Workshop Base
 
 ## Overview
 This project is a compendium of Java-based applications that use different tools and libraries for automated testing to demonstrate them in action.
