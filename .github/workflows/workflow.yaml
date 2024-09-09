@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: playwright-workshop
+        working-directory: ${{ github.workspace }}/playwright-workshop
     permissions:
       contents: read
 
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: playwright-workshop
+        working-directory: ${{ github.workspace }}/playwright-workshop
     needs:
       - 'PreInstall'
 
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: playwright-workshop
+        working-directory: ${{ github.workspace }}/playwright-workshop
     needs:
       - 'PreInstall'
       - 'BuildAndTest'
