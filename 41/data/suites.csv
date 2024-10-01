@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Oct 01 11:56:34 GMT 2024","Tue Oct 01 11:56:34 GMT 2024","15","","org.example.ExampleTest","","org.example.ExampleTest","example","example()",""
