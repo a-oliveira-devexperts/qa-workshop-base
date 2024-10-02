@@ -1,3 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon Sep 09 16:26:56 GMT 2024","Mon Sep 09 16:26:56 GMT 2024","15","","com.devexperts.in.qatesting.internship.ExampleTest","","com.devexperts.in.qatesting.internship.ExampleTest","example","example()",""
-"passed","Mon Sep 09 16:26:56 GMT 2024","Mon Sep 09 16:27:09 GMT 2024","12788","","com.devexperts.in.qatesting.internship.LoginTest","","com.devexperts.in.qatesting.internship.LoginTest","testLoginSuccess","testLoginSuccess()",""
