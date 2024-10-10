@@ -1,4 +1,4 @@
-package org.example.configuration;
+package com.devexperts.in.qatesting;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
