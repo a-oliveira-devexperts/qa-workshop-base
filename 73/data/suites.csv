@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Oct 10 23:49:33 GMT 2024","Thu Oct 10 23:49:47 GMT 2024","13542","","org.example.ExampleTest","","org.example.ExampleTest","testLoginSuccess","testLoginSuccess()",""
