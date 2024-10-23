@@ -1,0 +1,1 @@
+[{"uid":"850e3e3016885cb8","name":"testLoginWithWrongCredentials()","time":{"start":1729677114680,"stop":1729677117262,"duration":2582},"status":"passed","severity":"normal"},{"uid":"870dae6ee0d723ab","name":"testSuccessfulLogin()","time":{"start":1729677117313,"stop":1729677119641,"duration":2328},"status":"passed","severity":"normal"}]
