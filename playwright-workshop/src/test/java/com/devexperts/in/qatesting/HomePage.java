@@ -9,13 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class HomePage {
 
     Page page;
+    private static final String HOMEPAGE_TITLE_SELECTOR = ".header-title-content";
 
     public HomePage(Page page){
         this.page = page;
     }
 
     private Locator getHeaderHomepage(){
-        return page.locator(".header-title-content");
+        return page.locator(HOMEPAGE_TITLE_SELECTOR);
     }
 
     public void assertHeaderHomepage(String pageHeader){

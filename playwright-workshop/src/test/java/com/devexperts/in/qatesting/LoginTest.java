@@ -1,5 +1,6 @@
 package com.devexperts.in.qatesting;
 
+import com.devexperts.in.qatesting.configuration.PropertiesProvider;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.*;
@@ -13,6 +14,9 @@ public class LoginTest {
     private Browser browser;
     private Page page;
 
+    private static final String USERNAME_DATA = "gmshn.edu@gmail.com";
+    private static final String PASSWORD_DATA = "autoQAedu@2024";
+
     @BeforeAll
     public static void createPlaywright(){
         playwright = Playwright.create();
@@ -24,15 +28,15 @@ public class LoginTest {
         browser = playwright.chromium().launch();
         //browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         page = browser.newPage();
-        page.navigate("https://qa-testing.in.devexperts.com/internship/");
+        page.navigate(PropertiesProvider.getProperty("base.url"));
     }
 
     @Test
     public void testSuccessfulLogin(){
 
         LoginPage loginPage = new LoginPage(page);
-        loginPage.informUsername("gmshn.edu@gmail.com");
-        loginPage.informPassword("autoQAedu@2024");
+        loginPage.informUsername(USERNAME_DATA);
+        loginPage.informPassword(PASSWORD_DATA);
         loginPage.clickLogin();
 
         HomePage homePage = new HomePage(page);
