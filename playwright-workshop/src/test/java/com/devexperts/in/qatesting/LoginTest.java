@@ -15,13 +15,13 @@ public class LoginTest {
 
     @BeforeAll
     public static void beforeAll(){
-        //Create Playwright, Browser, Page
+        //Create Playwright
         playwright = Playwright.create();
     }
 
     @BeforeEach
     public void setup(){
-        //Setup
+        //Create Browser, Page
         browser = playwright.chromium().launch();
         page = browser.newPage();
         //Open Login Page
@@ -30,12 +30,14 @@ public class LoginTest {
 
     @Test
     public void testSuccessfulLogin(){
+        //Login
         LoginPage loginPage = new LoginPage(page);
         loginPage.informUsername(PropertiesProvider.getProperty("test.user"));
         loginPage.informPassword(PropertiesProvider.getProperty("test.password"));
         loginPage.clickLogin();
         HomePage homePage = new HomePage(page);
 
+        //Check that login is successful
         //Type1
             //assertThat(homeHeaderPage).hasText("Home TestD Task");
             //assertThat(homeHeaderPage).isVisible();
@@ -53,22 +55,25 @@ public class LoginTest {
 
     @Test
     public void testLoginWithWrongCredentials(){
+        //Login
         LoginPage loginPage = new LoginPage(page);
         loginPage.informUsername(PropertiesProvider.getProperty("test.user"));
         loginPage.informPassword(PropertiesProvider.getProperty("test.wrong.password"));
         loginPage.clickLogin();
+        //Check that password is wrong
         assertThat(LoginPage.getLoginStatus()).containsText("Wrong password!");
     }
 
     @AfterEach
     public void tearDown(){
-        //Close everything
+        //Close page and browser
         page.close();
         browser.close();
     }
 
     @AfterAll
     public static void afterAll(){
+        //Close playwright
         playwright.close();
     }
 
