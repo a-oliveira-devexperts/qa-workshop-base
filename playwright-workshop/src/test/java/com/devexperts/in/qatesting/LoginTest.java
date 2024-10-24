@@ -44,6 +44,7 @@ public class LoginTest {
             assertAll("Login Page Checks",
                     () -> assertThat(homeHeaderPage).hasText("Home Test Task"),
                     () -> assertThat(homeHeaderPage).isVisible());
+
         //Close everything
         page.close();
         browser.close();
