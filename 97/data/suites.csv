@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Oct 24 21:24:16 GMT 2024","Thu Oct 24 21:24:18 GMT 2024","2501","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithoutUserData","testLoginWithoutUserData()",""
+"passed","Thu Oct 24 21:24:18 GMT 2024","Thu Oct 24 21:24:21 GMT 2024","2558","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithWrongUser","testLoginWithWrongUser()",""
+"passed","Thu Oct 24 21:24:04 GMT 2024","Thu Oct 24 21:24:14 GMT 2024","9959","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithWrongPassword","testLoginWithWrongPassword()",""
+"passed","Thu Oct 24 21:24:14 GMT 2024","Thu Oct 24 21:24:16 GMT 2024","2093","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
