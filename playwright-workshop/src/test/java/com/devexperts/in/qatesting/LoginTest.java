@@ -12,7 +12,7 @@ public class LoginTest {
     @Test
     public void testSuccessfulLogin(){
         Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Browser browser = playwright.chromium().launch();
         Page page = browser.newPage();
         page.navigate("https://qa-testing.in.devexperts.com/internship/");
         Locator inputUsername = page.getByPlaceholder("Username");
