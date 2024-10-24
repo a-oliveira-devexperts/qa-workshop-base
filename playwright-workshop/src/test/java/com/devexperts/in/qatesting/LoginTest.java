@@ -1,5 +1,6 @@
 package com.devexperts.in.qatesting;
 
+import com.devexperts.in.qatesting.configuration.PropertiesProvider;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
 
@@ -24,18 +25,16 @@ public class LoginTest {
         browser = playwright.chromium().launch();
         page = browser.newPage();
         //Open Login Page
-        page.navigate("https://qa-testing.in.devexperts.com/internship/");
+        page.navigate(PropertiesProvider.getProperty("base.url"));
     }
 
     @Test
     public void testSuccessfulLogin(){
         LoginPage loginPage = new LoginPage(page);
-        loginPage.informUsername("kmarkov@devexperts.com");
-        loginPage.informPassword("Aa12345678!");
+        loginPage.informUsername(PropertiesProvider.getProperty("test.user"));
+        loginPage.informPassword(PropertiesProvider.getProperty("test.password"));
         loginPage.clickLogin();
-
-        //Check if we were redirected to the home page
-        Locator homeHeaderPage = page.locator(".header-title-content");
+        HomePage homePage = new HomePage(page);
 
         //Type1
             //assertThat(homeHeaderPage).hasText("Home TestD Task");
@@ -48,12 +47,17 @@ public class LoginTest {
 
         //Type3
             assertAll("Login Page Checks",
-                    () -> assertThat(homeHeaderPage).hasText("Home Test Task"),
-                    () -> assertThat(homeHeaderPage).isVisible());
+                    () -> assertThat(HomePage.getHomePageHeader()).hasText("Home Test Task"),
+                    () -> assertThat(HomePage.getHomePageHeader()).isVisible());
     }
 
     @Test
     public void testLoginWithWrongCredentials(){
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername(PropertiesProvider.getProperty("test.user"));
+        loginPage.informPassword(PropertiesProvider.getProperty("test.wrong.password"));
+        loginPage.clickLogin();
+        assertThat(LoginPage.getLoginStatus()).containsText("Wrong password!");
     }
 
     @AfterEach
