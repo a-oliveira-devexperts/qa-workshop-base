@@ -17,6 +17,9 @@ public class LoginTest {
     private static final String USERNAME_DATA = "gmshn.edu@gmail.com";
     private static final String PASSWORD_DATA = "autoQAedu@2024";
 
+    private static final String USERNAME_WRONG_DATA = "wrong_username";
+    private static final String PASSWORD_WRONG_DATA = "wrong_password";
+
     @BeforeAll
     public static void createPlaywright(){
         playwright = Playwright.create();
@@ -25,8 +28,8 @@ public class LoginTest {
     @BeforeEach
     public void setUp(){
         //Setup: create Browser, Page
-        browser = playwright.chromium().launch();
-        //browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        //browser = playwright.chromium().launch();
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         page = browser.newPage();
         page.navigate(PropertiesProvider.getProperty("base.url"));
     }
@@ -41,6 +44,39 @@ public class LoginTest {
 
         HomePage homePage = new HomePage(page);
         homePage.assertHeaderHomepage("Home Test Task");
+    }
+
+    @Test
+    public void testLoginWithoutUserData(){
+
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername("");
+        loginPage.informPassword("");
+        loginPage.clickLogin();
+        // Checking that we get error about invalid credentials
+        loginPage.assertInvalidCredentialsStatus();
+    }
+
+    @Test
+    public void testLoginWithWrongUser(){
+
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername(USERNAME_WRONG_DATA);
+        loginPage.informPassword(PASSWORD_WRONG_DATA);
+        loginPage.clickLogin();
+        // Checking that we get error about wrong user
+        loginPage.assertWrongUserStatus(USERNAME_WRONG_DATA);
+    }
+
+    @Test
+    public void testLoginWithWrongPassword(){
+
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername(USERNAME_DATA);
+        loginPage.informPassword(PASSWORD_WRONG_DATA);
+        loginPage.clickLogin();
+        // Checking that we get error about wrong password
+        loginPage.assertWrongPasswordStatus(PASSWORD_DATA);
     }
 
     @AfterEach

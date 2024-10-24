@@ -21,7 +21,7 @@ public class HomePage {
 
     public void assertHeaderHomepage(String pageHeader){
         assertAll("Home Page Checks",
-                () ->assertThat(getHeaderHomepage()).hasText("Home Test Task"),
+                () ->assertThat(getHeaderHomepage()).hasText(pageHeader),
                 () ->assertThat(getHeaderHomepage()).isVisible());
     }
 }
