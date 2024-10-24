@@ -2,22 +2,34 @@ package com.devexperts.in.qatesting;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTest {
 
-    @Test
-    public void testSuccessfulLogin(){
-        //Setup
+    private static Playwright playwright;
+    private Browser browser;
+    private Page page;
+
+    @BeforeAll
+    public static void beforeAll(){
         //Create Playwright, Browser, Page
-        Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch();
-        Page page = browser.newPage();
+        playwright = Playwright.create();
+    }
+
+    @BeforeEach
+    public void setup(){
+        //Setup
+        browser = playwright.chromium().launch();
+        page = browser.newPage();
         //Open Login Page
         page.navigate("https://qa-testing.in.devexperts.com/internship/");
+    }
+
+    @Test
+    public void testSuccessfulLogin(){
         //Inform Username
         Locator inputUsername = page.getByPlaceholder("Username");
         inputUsername.fill("kmarkov@devexperts.com");
@@ -44,10 +56,21 @@ public class LoginTest {
             assertAll("Login Page Checks",
                     () -> assertThat(homeHeaderPage).hasText("Home Test Task"),
                     () -> assertThat(homeHeaderPage).isVisible());
+    }
 
+    @Test
+    public void testLoginWithWrongCredentials(){
+    }
+
+    @AfterEach
+    public void tearDown(){
         //Close everything
         page.close();
         browser.close();
+    }
+
+    @AfterAll
+    public static void afterAll(){
         playwright.close();
     }
 
