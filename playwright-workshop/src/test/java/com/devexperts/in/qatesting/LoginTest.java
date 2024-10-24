@@ -28,8 +28,8 @@ public class LoginTest {
     @BeforeEach
     public void setUp(){
         //Setup: create Browser, Page
-        //browser = playwright.chromium().launch();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser = playwright.chromium().launch();
+        //browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         page = browser.newPage();
         page.navigate(PropertiesProvider.getProperty("base.url"));
     }
