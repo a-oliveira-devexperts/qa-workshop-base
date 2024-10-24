@@ -1,7 +1,6 @@
 package com.devexperts.in.qatesting;
 
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -30,16 +29,11 @@ public class LoginTest {
 
     @Test
     public void testSuccessfulLogin(){
-        //Inform Username
-        Locator inputUsername = page.getByPlaceholder("Username");
-        inputUsername.fill("kmarkov@devexperts.com");
-        //Inform Password
-        //Locator inputPassword = page.getByPlaceholder("Password", new Page.GetByPlaceholderOptions().setExact(true));
-        Locator inputPassword = page.locator("#password");
-        inputPassword.fill("Aa12345678!");
-        //Click Login Button
-        Locator loginButton = page.getByRole( AriaRole.BUTTON,  new Page.GetByRoleOptions().setName("Login"));
-        loginButton.click();
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername("kmarkov@devexperts.com");
+        loginPage.informPassword("Aa12345678!");
+        loginPage.clickLogin();
+
         //Check if we were redirected to the home page
         Locator homeHeaderPage = page.locator(".header-title-content");
 
