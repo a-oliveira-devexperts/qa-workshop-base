@@ -1,11 +1,11 @@
-package org.example;
+package com.devexperts.in.qatesting;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import static java.awt.SystemColor.text;
+// import static java.awt.SystemColor.text;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LoginTest {
@@ -25,6 +25,7 @@ public class LoginTest {
         assertAll("Login Page Checks" ,
                 () ->assertThat(homeHeaderPage).hasText ("Home Test Task"),
                 () ->assertThat(homeHeaderPage).isVisible());
+        Thread.sleep(5000);
         page.close();
         browser.close();
         playwright.close();
