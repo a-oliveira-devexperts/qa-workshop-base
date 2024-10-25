@@ -16,6 +16,7 @@ public class LoginTest {
 
     private static final String USERNAME_DATA = "gmshn.edu@gmail.com";
     private static final String PASSWORD_DATA = "autoQAedu@2024";
+    private static final String DEPOSIT_DATA = "5000.00";
 
     private static final String USERNAME_WRONG_DATA = "wrong_username";
     private static final String PASSWORD_WRONG_DATA = "wrong_password";
@@ -77,6 +78,18 @@ public class LoginTest {
         loginPage.clickLogin();
         // Checking that we get error about wrong password
         loginPage.assertWrongPasswordStatus(PASSWORD_DATA);
+    }
+
+    @Test
+    public void testInitialBalancesCheck(){
+
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername(USERNAME_DATA);
+        loginPage.informPassword(PASSWORD_DATA);
+        loginPage.clickLogin();
+
+        HomePage homePage = new HomePage(page);
+        homePage.assertInitialBalances(DEPOSIT_DATA);
     }
 
     @AfterEach

@@ -11,6 +11,9 @@ public class HomePage {
     Page page;
     private static final String HOMEPAGE_TITLE_SELECTOR = ".header-title-content";
 
+    private static final String BALANCE_SELECTOR = "#balanceInfoNumber";
+    private static final String TOTAL_FUNDS_SELECTOR = "#balanceTotalNumber";
+
     public HomePage(Page page){
         this.page = page;
     }
@@ -24,4 +27,23 @@ public class HomePage {
                 () ->assertThat(getHeaderHomepage()).hasText(pageHeader),
                 () ->assertThat(getHeaderHomepage()).isVisible());
     }
+
+    // Balance Section
+
+    private Locator getBalance(){
+        return page.locator(BALANCE_SELECTOR);
+    }
+
+    private Locator getTotalFunds(){
+        return page.locator(TOTAL_FUNDS_SELECTOR);
+    }
+
+    public void assertInitialBalances(String deposit){
+        assertAll("Initial Balances are equal to selected Deposit",
+                () ->assertThat(getBalance()).hasText(deposit),
+                () ->assertThat(getBalance()).isVisible(),
+                () ->assertThat(getTotalFunds()).hasText(deposit),
+                () ->assertThat(getTotalFunds()).isVisible());
+    }
+
 }
