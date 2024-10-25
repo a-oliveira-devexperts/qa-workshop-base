@@ -17,8 +17,8 @@ public class LoginTest {
         page.navigate("https://qa-testing.in.devexperts.com/internship/");
         Locator inputUsername = page.getByPlaceholder("Username");
         inputUsername.fill("rcosta@devexperts.com");
-        Locator inputPassowrd = page.locator("#password");
-        inputPassowrd.fill("Workshop123@");
+        Locator inputPassword = page.locator("#password");
+        inputPassword.fill("Workshop123@");
         Locator loginButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions(). setName("Login"));
         loginButton.click();
         Locator homeHeaderPage = page.locator(".header-title-content");
