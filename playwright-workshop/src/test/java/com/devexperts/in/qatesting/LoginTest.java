@@ -13,7 +13,7 @@ public class LoginTest {
     public void testSuccessfulLogin() {
         //Setup Playwright, Browser , Page
         Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
+        Browser browser = playwright.chromium().launch();
         Page page = browser.newPage();
         page.navigate("https://qa-testing.in.devexperts.com/internship/");
 
