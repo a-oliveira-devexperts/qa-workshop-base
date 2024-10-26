@@ -25,7 +25,6 @@ public class LoginTest {
         assertAll("Login Page Checks" ,
                 () ->assertThat(homeHeaderPage).hasText ("Home Test Task"),
                 () ->assertThat(homeHeaderPage).isVisible());
-        Thread.sleep(5000);
         page.close();
         browser.close();
         playwright.close();
