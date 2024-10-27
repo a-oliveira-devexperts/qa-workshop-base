@@ -39,6 +39,7 @@ public class HomePageTest {
     @Test
     public void checkAccountBalance(){
         HomePage homePage = new HomePage(page);
+        //Check that balance is the same as expected
         assertAll("Account Balance Checks",
                 () -> assertThat(homePage.getBalance()).hasText(PropertiesProvider.getProperty("initial.account.balance")),
                 () -> assertThat(homePage.getBalance()).isVisible());
