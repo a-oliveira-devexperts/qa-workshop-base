@@ -4,7 +4,6 @@ import com.devexperts.in.qatesting.configuration.PropertiesProvider;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ public class LoginTest {
     @Test
     public void testSuccessfulLogin(){
         Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Browser browser = playwright.chromium().launch();
         Page page = browser.newPage();
         page.navigate(PropertiesProvider.getProperty("base.url"));
         Locator inputUsername = page.getByPlaceholder("Username");
