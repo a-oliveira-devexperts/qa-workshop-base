@@ -49,8 +49,10 @@ public class LoginTest {
 
         //Type3
             assertAll("Login Page Checks",
-                    () -> assertThat(HomePage.getHomePageHeader()).hasText("Home Test Task"),
-                    () -> assertThat(HomePage.getHomePageHeader()).isVisible());
+                    () -> assertThat(homePage.getHomePageHeader()).hasText("Home Test Task"),
+                    () -> assertThat(homePage.getHomePageHeader()).isVisible());
+        //Logout
+        homePage.clickLogout();
     }
 
     @Test
