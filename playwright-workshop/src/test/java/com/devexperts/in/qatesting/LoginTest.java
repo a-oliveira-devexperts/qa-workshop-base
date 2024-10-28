@@ -16,7 +16,7 @@ public class LoginTest {
     private static final String USERNAME_DATA = "q@q.q";
     private static final String PASSWORD_DATA = "Qw#45678";
     private static final String WRONG_PASSWORD = "Qw#456";
-    private static final String STATUS_MESSAGE = "Wrong password! Correct password is: Qw#45678";
+    private static final String STATUS_MESSAGE = "Wrong password! Correct password is: " + PASSWORD_DATA;
     private static final String INITIAL_BALANCE = "10000.00";
 
 
