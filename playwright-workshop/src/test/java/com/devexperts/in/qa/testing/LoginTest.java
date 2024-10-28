@@ -1,32 +1,62 @@
 package com.devexperts.in.qa.testing;
 
+import com.devexperts.in.qa.testing.configuration.PropertiesProvider;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LoginTest
   {
+      private static Playwright playwright;
+      private Browser browser;
+      private Page page;
+      private static final String USERNAME_DATA="bfraga@devexperts.com";
+      private static final String PASSWORD_DATA="B-fraga*";
+
+      @BeforeAll
+      //Method to set up Playwright
+      public static void beforeAll()
+        {
+           playwright=Playwright.create();
+        }
+
+      @BeforeEach
+      //Method to set up Browser and Page
+      public void setUp()
+        {
+           browser = playwright.chromium().launch();
+           page = browser.newPage();
+           page.navigate(PropertiesProvider.getProperty("base.url"));
+        }
+
+      @AfterEach
+      //Method to close Page and Browser
+      public void tearDown()
+        {
+           page.close();
+           browser.close();
+        }
+
+      @AfterAll
+      //Method to close Playwright
+      public static void afterAll()
+        {
+           playwright.close();
+        }
+
       @Test
-     public void testSuccessfullLogin()
-       {
-            //Setup Playwright, Browser, Page
-           Playwright playwright = Playwright.create();
-           Browser browser = playwright.chromium().launch();
-           Page page = browser.newPage();
-           page.navigate("https://qa-testing.in.devexperts.com/internship/");
-           //Inform username
-           Locator inputUsername = page.locator("#name");
-           inputUsername.fill("bfraga@devexperts.com");
-           //Inform password
-           Locator inputPassword=page.locator("#password");
-           inputPassword.fill("B-fraga*");
-           //Click in Login button
-           Locator buttonLogin = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login"));
-           buttonLogin.click();
-           //Check if we were redirected to hte homepage
+      public void testSuccessfulLogin()
+        {
+           LoginPage loginPage=new LoginPage(page);
+
+           loginPage.informUsername(USERNAME_DATA);
+           loginPage.informPassword(PASSWORD_DATA);
+           loginPage.clickLogin();
+
+           //Check if we were redirected to the homepage
            Locator homeHeader = page.locator(".header-title-content");
            //assertThat(homeHeader).isVisible();
            //assertThat(homeHeader).hasText("Home Test Task");
@@ -34,12 +64,13 @@ public class LoginTest
                    ()-> assertThat(homeHeader).hasText("Home Test Task"),
                    ()-> assertThat(homeHeader).isVisible()
                     );
+        }
 
-           //Close Page, Browser and Playwright
-           page.close();
-           browser.close();
-           playwright.close();
-       }
+      @Test
+      public void testLoginWithWrongCredentials()
+         {
+
+         }
   }
 
   //Workshop session script
