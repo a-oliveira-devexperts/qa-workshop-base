@@ -2,7 +2,6 @@ package com.devexperts.in.qa.testing;
 
 import com.devexperts.in.qa.testing.configuration.PropertiesProvider;
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -27,7 +26,7 @@ public class LoginTest
       //Method to set up Browser and Page
       public void setUp()
         {
-           browser = playwright.chromium().launch();
+           browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
            page = browser.newPage();
            page.navigate(PropertiesProvider.getProperty("base.url"));
         }
@@ -69,8 +68,44 @@ public class LoginTest
       @Test
       public void testLoginWithWrongCredentials()
          {
+             LoginPage loginPage=new LoginPage(page);
 
+             loginPage.informUsername("X");
+             loginPage.informPassword("X");
+             loginPage.clickLogin();
+
+             Locator loginStatus= page.locator("#login-status");
+
+
+             assertThat(loginStatus).hasText("Wrong user! User X not found.");
+
+             loginPage.informUsername(USERNAME_DATA);
+             loginPage.informPassword("X");
+             loginPage.clickLogin();
+
+             assertThat(loginStatus).hasText("Wrong password! Correct password is: B-fraga*");
+
+
+             loginPage.informUsername("X");
+             loginPage.informPassword(PASSWORD_DATA);
+             loginPage.clickLogin();
+
+             assertThat(loginStatus).hasText("Wrong user! User X not found.");
          }
+
+      @Test
+      public void checkBalance()
+        {
+            LoginPage loginPage=new LoginPage(page);
+
+            loginPage.informUsername(USERNAME_DATA);
+            loginPage.informPassword(PASSWORD_DATA);
+            loginPage.clickLogin();
+
+            Locator balance= page.locator(".balanceNumber");
+
+            assertThat(balance).hasText("10000.00");
+        }
   }
 
   //Workshop session script
