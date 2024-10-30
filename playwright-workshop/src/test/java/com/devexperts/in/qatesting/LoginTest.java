@@ -1,16 +1,20 @@
 package com.devexperts.in.qatesting;
 
+import com.devexperts.in.qatesting.configuration.PropertiesProvider;
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.*;
+import org.junit.platform.commons.logging.LoggerFactory;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LoginTest {
+    //private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
     private static Playwright playwright;
     private Browser browser;
     private Page page;
+    private static final String USERNAME_DATA = "iamritaferraz@gmail.com";
+    private static final String PASSWORD_DATA = "Internet1!";
 
     @BeforeAll
     public static void beforeAll(){
@@ -21,21 +25,20 @@ public class LoginTest {
     public void setUp(){
         browser = playwright.chromium().launch();
         page = browser.newPage();
-        page.navigate("https://qa-testing.in.devexperts.com/internship/");
+        page.navigate(PropertiesProvider.getProperty("base.url"));
     }
 
     @Test
     public void testSuccessfulLogin() {
-        Locator inputUsername = page.getByPlaceholder("Username");
-        inputUsername.fill("iamritaferraz@gmail.com");
-        Locator inputPassword = page.locator("#password");
-        inputPassword.fill("Internet1!");
-        Locator buttonLogin = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login")); //find elements by their role on the page. find a button that is named logjn
-        buttonLogin.click();
-        Locator homeHeader = page.locator(".header-title-content");
-        assertAll("Login Checks",
-                ()-> assertThat(homeHeader).hasText("Home Test Task"),
-                ()-> assertThat(homeHeader).isVisible());
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername(USERNAME_DATA);
+        loginPage.informPassword(PASSWORD_DATA);
+        loginPage.clickLogin();
+
+        Locator homeHeaderPage = page.locator(".header-title-content");
+        assertAll("Login Page Checks",
+                ()->assertThat(homeHeaderPage).hasText("Home Test Task"),
+                ()->assertThat(homeHeaderPage).isVisible());
     }
 
     @Test
