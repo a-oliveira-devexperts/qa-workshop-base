@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Oct 30 08:51:46 GMT 2024","Wed Oct 30 08:51:50 GMT 2024","3689","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
+"passed","Wed Oct 30 08:51:43 GMT 2024","Wed Oct 30 08:51:46 GMT 2024","3172","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithWrongCredentials","testLoginWithWrongCredentials()",""
