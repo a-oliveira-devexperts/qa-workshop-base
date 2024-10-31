@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Thu Oct 31 14:16:06 GMT 2024","Thu Oct 31 14:16:06 GMT 2024","82","","com.devexperts.in.qa.testing.LoginTest","","com.devexperts.in.qa.testing.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
+"broken","Thu Oct 31 14:16:06 GMT 2024","Thu Oct 31 14:16:06 GMT 2024","124","","com.devexperts.in.qa.testing.LoginTest","","com.devexperts.in.qa.testing.LoginTest","testLoginWithWrongCredentials","testLoginWithWrongCredentials()",""
+"broken","Thu Oct 31 14:16:06 GMT 2024","Thu Oct 31 14:16:06 GMT 2024","78","","com.devexperts.in.qa.testing.LoginTest","","com.devexperts.in.qa.testing.LoginTest","checkBalance","checkBalance()",""
