@@ -1,8 +1,8 @@
-package com.devexperts.in.qatesting;
+package com.devexperts.in.qatesting.testSteps;
 
 import com.devexperts.in.qatesting.configuration.PropertiesProvider;
+import com.devexperts.in.qatesting.pages.LoginPage;
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -12,8 +12,8 @@ public  class SuccessfulLoginTest {
     private static Playwright playwright;
     private Browser browser;
     private Page page;
-    private static final String USERNAME = "pkaramanova@example.com";
-    private static final String PASSWORD = "MyPass1234!";
+    private static final String USERNAME = PropertiesProvider.getProperty("test.user");
+    private static final String PASSWORD = PropertiesProvider.getProperty("test.password");
 
     @BeforeAll
     public static void beforeAll(){

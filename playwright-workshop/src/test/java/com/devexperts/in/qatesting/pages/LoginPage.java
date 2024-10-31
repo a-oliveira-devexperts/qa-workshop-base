@@ -1,4 +1,4 @@
-package com.devexperts.in.qatesting;
+package com.devexperts.in.qatesting.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -9,6 +9,8 @@ public class LoginPage {
     private static final String USERNAME_FIELD_SELECTOR = "Username";
     private static final String PASSWORD_FIELD_SELECTOR = "#password";
     private static final String LOGIN_BUTTON_SELECTOR = "Login";
+    private static final String INVALID_LOGIN_STATUS_SELECTOR = "#login-status";
+    private static final String NEW_USER_REGISTRATION_SELECTOR = "#usernameForm > div.input-group.modal-controls > a";
     public LoginPage(Page page){
         this.page = page;
     }
@@ -28,6 +30,17 @@ public class LoginPage {
         return page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(LOGIN_BUTTON_SELECTOR));
     }
 
+    //Method for locating the invalid login error message
+    public Locator getInvalidStatusCheck(){
+        return page.locator(INVALID_LOGIN_STATUS_SELECTOR);
+    }
+
+    //Method for locating "Need a new account" toggle
+    public Locator getNewUserRegistrationLink(){
+        return page.locator(NEW_USER_REGISTRATION_SELECTOR);
+    }
+
+
     //Method for entering the Username
     public void provideUsername(String username){
         getInputUsername().fill(username);
@@ -42,5 +55,11 @@ public class LoginPage {
     public void clickLogin(){
         getLoginButton().click();
     }
+
+    //Method for opening the Registration page
+    public void OpenRegistration(){
+        getNewUserRegistrationLink().click();
+    }
+
 
 }
