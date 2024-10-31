@@ -27,9 +27,11 @@ public class LoginPage {
     public void informUsername(String username){
         getInputUsername().fill(username);
     }
+
     public void informPassword(String password){
         getInputPassword().fill(password);
     }
+
     public void clickLogin(){
         getButtonLogin().click();
     }

@@ -76,7 +76,6 @@ public class LoginTest {
                 ()->assertThat(loginStatus).hasText("Please enter valid credentials:"));
     }
 
-
     @AfterEach
     public void tearDown(){
         page.close();
