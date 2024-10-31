@@ -70,22 +70,42 @@ public class LoginTest
          {
              LoginPage loginPage=new LoginPage(page);
 
-             loginPage.informUsername("X");
-             loginPage.informPassword("X");
+
+             //Test with empty both fields
              loginPage.clickLogin();
 
              Locator loginStatus= page.locator("#login-status");
 
+             assertThat(loginStatus).hasText("Please enter valid credentials:");
+
+             //Test with empty password
+             loginPage.informUsername("X");
+             loginPage.clickLogin();
+
+             assertThat(loginStatus).hasText("Please enter valid credentials:");
+
+             //Test with empty username
+             loginPage.informPassword("X");
+             loginPage.clickLogin();
+
+             assertThat(loginStatus).hasText("Please enter valid credentials:");
+
+             //Test with wrong username and password
+             loginPage.informUsername("X");
+             loginPage.informPassword("X");
+             loginPage.clickLogin();
+
 
              assertThat(loginStatus).hasText("Wrong user! User X not found.");
 
+             //Test with wrong password
              loginPage.informUsername(USERNAME_DATA);
              loginPage.informPassword("X");
              loginPage.clickLogin();
 
              assertThat(loginStatus).hasText("Wrong password! Correct password is: B-fraga*");
 
-
+             //Test with wrong username
              loginPage.informUsername("X");
              loginPage.informPassword(PASSWORD_DATA);
              loginPage.clickLogin();
