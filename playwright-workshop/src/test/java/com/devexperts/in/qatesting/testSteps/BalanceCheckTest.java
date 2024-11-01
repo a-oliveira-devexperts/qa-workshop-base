@@ -17,7 +17,6 @@ public class BalanceCheckTest {
     private static final Logger log = LoggerFactory.getLogger(BalanceCheckTest.class);
     private static Playwright playwright;
     private Browser browser;
-    private BrowserType browserType;
     private Page page;
     private static final String PASSWORD = PropertiesProvider.getProperty("test.password");
     private static final String NEW_USERNAME = PropertiesProvider.getProperty("test.newuser");
@@ -29,7 +28,7 @@ public class BalanceCheckTest {
 
     @BeforeEach
     public void setUp(){
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser = playwright.chromium().launch();
         page = browser.newPage();
         page.navigate(PropertiesProvider.getProperty("base.url"));
     }
