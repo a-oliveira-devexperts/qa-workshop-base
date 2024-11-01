@@ -10,21 +10,21 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class LoginTest {
     @Test
     public void testSuccessfulLogin(){
-        //Setuo
-        //Create Playwrite, Browser, Page
-        Playwright playwrighte = Playwright.create();
-        Browser browser = playwrighte.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        //Setup
+        //Create Playwright, Browser, Page
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
         //Open Login Page
 
         page.navigate("https://qa-testing.in.devexperts.com/internship/");
         //Inform username
         Locator inputUsername = page.getByPlaceholder("Username");
-        inputUsername.fill("kpevzner@devexpert.com");
+        inputUsername.fill("kpevzner@devexperts.com");
         //Inform password
         //Locator inputPassword = page.getByPlaceholder("Password", new Page.GetByPlaceholderOptions().setExact(true));
-        Locator inputPassword = page.locator("password");
-        inputPassword.fill("123");
+        Locator inputPassword = page.locator("#password");
+        inputPassword.fill("Evangelion2223!");
         //Click login button
         Locator loginButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login"));
         loginButton.click();
@@ -36,7 +36,7 @@ public class LoginTest {
         //Close everything
         page.close();
         browser.close();
-        playwrighte.close();
+        playwright.close();
     }
 
 
