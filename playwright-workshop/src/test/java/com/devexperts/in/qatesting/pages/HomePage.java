@@ -6,7 +6,7 @@ import com.microsoft.playwright.Page;
 public class HomePage {
     Page page;
     private static final String HOME_PAGE_TITLE = ".header-title-content";
-    private static final String BALANCE_SELECTOR = "balanceInfoNumber";
+    private static final String BALANCE_SELECTOR = "#balanceInfoNumber";
     public HomePage(Page page){
         this.page = page;
     }
