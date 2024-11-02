@@ -1,2 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon Oct 28 18:38:49 GMT 2024","Mon Oct 28 18:39:03 GMT 2024","13223","","com.devexperts.in.qa.testing.LoginTest","","com.devexperts.in.qa.testing.LoginTest","testSuccessfullLogin","testSuccessfullLogin()",""
