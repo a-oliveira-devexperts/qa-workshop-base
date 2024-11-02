@@ -11,6 +11,8 @@ public class LoginTest {
     private static Playwright playwright;
     private Browser browser;
     private Page page;
+    private static final String USERNAME_DATA = "kpevzner@devexperts.com";
+    private static final String PASSWORD_DATA = "Evangelion2223!";
 
     @BeforeAll
     public static void beforeAll(){
@@ -21,19 +23,17 @@ public class LoginTest {
     public void setUp(){
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
         page = browser.newPage();
-        //Open Login Page
-        page.navigate("https://qa-testing.in.devexperts.com/internship/");
+        page.navigate(PropertiesProvider.getProperty("base.url"));
     }
 
     @Test
     public void testSuccessfulLogin(){
 
         LoginPage loginPage = new LoginPage(page);
-        loginPage.informUsername("kpevzner@devexperts.com");
-        loginPage.informPassword("Evangelion2223!");
+        loginPage.informUsername(USERNAME_DATA);
+        loginPage.informPassword(PASSWORD_DATA);
         loginPage.clickLogin();
 
-        //Check if we were redirected to the homepage
         Locator homeHeaderPage = page.locator(".header-title-content");
         assertAll("Login Page Checks",
                 () ->assertThat(homeHeaderPage).hasText("Home Test Task"),
