@@ -1,6 +1,5 @@
 package com.devexperts.in.qatesting.configuration;
 
-import com.devexperts.in.qatesting.HomePage;
 import com.devexperts.in.qatesting.LoginPage;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
