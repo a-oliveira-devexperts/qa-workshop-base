@@ -1,39 +1,72 @@
 package com.devexperts.in.qatesting;
 
+import com.devexperts.in.qatesting.configuration.PropertiesProvider;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.assertions.LocatorAssertions;
 import com.microsoft.playwright.options.AriaRole;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LoginTest {
+    private static Playwright playwright;
+    private Browser browser;
+    private Page page;
+    private static final String USERNAME_DATA = "atykhonova@devexperts.com";
+    private static final String USERNAME_WRONG_DATA = "atykhonova2@devexperts.com";
+    private static final String PASSWORD_DATA = "Greece93!";
+
+    @BeforeAll
+    public static void beforeAll(){
+        playwright = Playwright.create();
+    }
+
+    @BeforeEach
+    public void setUp() {
+
+        browser = playwright.chromium().launch();
+        page = browser.newPage();
+        page.navigate(PropertiesProvider.getProperty("base.url"));
+    }
+
     @Test
     public void testSuccessfulLogin() {
-        //Setup Playwright, Browser , Page
-        Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch();
-        Page page = browser.newPage();
-        page.navigate("https://qa-testing.in.devexperts.com/internship/");
 
-        Locator inputUsername = page.getByPlaceholder("Username");
-        inputUsername.fill("atykhonova@devexperts.com");
-        //Locator inputPassword = page.getByPlaceholder("Password" , new Page.GetByPlaceholderOptions().setExact(true));
-        Locator inputPassword = page.locator("#password");
-        inputPassword.fill("Greece93!");
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername(USERNAME_DATA);
+        loginPage.informPassword(PASSWORD_DATA);
+        loginPage.clickLogin();
+        loginPage.homePageChecks();
+    }
 
-        Locator buttonLogin = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login"));
-        buttonLogin.click();
+    @Test
+    public void testWithWrongCredentials() {
 
-        Locator homeHeader = page.locator(".header-title-content");
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername(USERNAME_WRONG_DATA);
+        loginPage.informPassword(PASSWORD_DATA);
+        loginPage.clickLogin();
+        loginPage.loginStatus();
+    }
 
-        assertAll("Login Checks",
-                () -> assertThat(homeHeader).hasText("Home Test Task", new LocatorAssertions.HasTextOptions().setIgnoreCase(false)),
-                () -> assertThat(homeHeader).isVisible());
+    @Test
+    public void checkBalanceValue(){
+        LoginPage loginPage = new LoginPage(page);
+        loginPage.informUsername(USERNAME_DATA);
+        loginPage.informPassword(PASSWORD_DATA);
+        loginPage.clickLogin();
+        loginPage.balanceNumber();
+    }
 
+    @AfterEach
+    public void tearDown() {
         page.close();
         browser.close();
+    }
+
+    @AfterAll
+    public static void afterAll(){
         playwright.close();
     }
 }
