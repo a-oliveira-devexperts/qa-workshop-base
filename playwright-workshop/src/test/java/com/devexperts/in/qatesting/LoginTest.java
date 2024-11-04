@@ -33,6 +33,6 @@ public class LoginTest {
         //Close Page, Browser and Playwright
         page.close();
         browser.close();
-        playwright.close();
+        //playwright.close();
     }
 }

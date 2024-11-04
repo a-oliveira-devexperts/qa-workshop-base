@@ -52,8 +52,8 @@ public void testIssueOrderBuy(){
 
     //()-> assertThat(homeHeader).hasId()
     //Close Page, Browser and Playwright
-    //page.close();
-    //browser.close();
-    //playwright.close();
+    page.close();
+    browser.close();
+    playwright.close();
 }
 }
