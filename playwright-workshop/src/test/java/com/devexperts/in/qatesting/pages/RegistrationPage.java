@@ -2,7 +2,8 @@ package com.devexperts.in.qatesting.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.WaitForSelectorState;
+
+import java.util.UUID;
 
 public class RegistrationPage {
     Page page;
@@ -71,6 +72,19 @@ public class RegistrationPage {
     //Method to click the Login button that appears after registering
     public void loginAfterRegistration() {
         getLoginButtonAfterRegistration().click();
+    }
+
+    //Method to generate a new email address for each time a new user is being registered (each test run)
+    public class EmailGenerator {
+
+        public static String generateNewEmail() {
+            String uniquePrefix = UUID.randomUUID().toString().substring(0, 8);
+            return uniquePrefix + "@example.com";
+        }
+
+        public static void main(String[] args) {
+            System.out.println(generateNewEmail());
+        }
     }
 
 

@@ -6,20 +6,17 @@ import com.devexperts.in.qatesting.pages.LoginPage;
 import com.devexperts.in.qatesting.pages.RegistrationPage;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.lang.model.element.Element;
 
+import static com.devexperts.in.qatesting.pages.RegistrationPage.EmailGenerator.generateNewEmail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BalanceCheckTest {
-    private static final Logger log = LoggerFactory.getLogger(BalanceCheckTest.class);
     private static Playwright playwright;
     private Browser browser;
     private Page page;
     private static final String PASSWORD = PropertiesProvider.getProperty("test.password");
-    private static final String NEW_USERNAME = PropertiesProvider.getProperty("test.newuser");
+    private static final String NEW_USERNAME = generateNewEmail();
 
     @BeforeAll
     public static void beforeAll(){
