@@ -31,8 +31,8 @@ public class LoginTest {
                 ()-> assertThat(homeHeader).isVisible());
                 //()-> assertThat(homeHeader).hasId()
         //Close Page, Browser and Playwright
-        page.close();
-        browser.close();
+        //page.close();
+        //browser.close();
         //playwright.close();
     }
 }
