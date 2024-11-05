@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Nov 05 23:28:28 GMT 2024","Tue Nov 05 23:28:31 GMT 2024","2777","","com.devexperts.in.qatesting.HomePageTest","","com.devexperts.in.qatesting.HomePageTest","checkAccountBalance","checkAccountBalance()",""
