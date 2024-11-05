@@ -1,3 +1,5 @@
+//This is a work in progress. It is not refactored and assertions are missing.
+
 package com.devexperts.in.qatesting;
 
 import com.microsoft.playwright.*;
@@ -52,8 +54,8 @@ public void testIssueOrderBuy(){
 
     //()-> assertThat(homeHeader).hasId()
     //Close Page, Browser and Playwright
-    //page.close();
-    //browser.close();
-    //playwright.close();
+   page.close();
+    browser.close();
+    playwright.close();
 }
 }
