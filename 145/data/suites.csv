@@ -1,3 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Fri Nov 01 20:37:55 GMT 2024","Fri Nov 01 20:38:06 GMT 2024","10946","","com.devexperts.in.qatesting.configuration.LoginTest","","com.devexperts.in.qatesting.configuration.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
-"passed","Fri Nov 01 20:37:55 GMT 2024","Fri Nov 01 20:37:55 GMT 2024","15","","com.devexperts.in.qatesting.configuration.ExampleTest","","com.devexperts.in.qatesting.configuration.ExampleTest","example","example()",""
