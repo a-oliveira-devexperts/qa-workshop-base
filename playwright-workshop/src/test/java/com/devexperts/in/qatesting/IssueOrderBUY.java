@@ -12,7 +12,7 @@ public class IssueOrderBUY {
 public void testIssueOrderBuy(){
     //Setup Playwright, Browser, Page
     Playwright playwright = Playwright.create();
-    Browser browser = playwright.chromium().launch();
+    Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
     Page page = browser.newPage();
     page.navigate("https://qa-testing.in.devexperts.com/internship/");
     //Inform username
