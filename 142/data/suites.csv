@@ -1,4 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Fri Nov 01 08:41:42 GMT 2024","Fri Nov 01 08:41:42 GMT 2024","196","","com.devexperts.in.qatesting.testSteps.BalanceCheckTest","","com.devexperts.in.qatesting.testSteps.BalanceCheckTest","testBalanceMatching","testBalanceMatching()",""
-"passed","Fri Nov 01 08:41:47 GMT 2024","Fri Nov 01 08:41:51 GMT 2024","4049","","com.devexperts.in.qatesting.testSteps.SuccessfulLoginTest","","com.devexperts.in.qatesting.testSteps.SuccessfulLoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
-"passed","Fri Nov 01 08:41:43 GMT 2024","Fri Nov 01 08:41:47 GMT 2024","4537","","com.devexperts.in.qatesting.testSteps.InvalidCredentialsLoginTest","","com.devexperts.in.qatesting.testSteps.InvalidCredentialsLoginTest","testLoginWithWrongUsername","testLoginWithWrongUsername()",""
