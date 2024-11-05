@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Nov 05 16:35:11 GMT 2024","Tue Nov 05 16:35:20 GMT 2024","9530","","com.devexperts.in.qatesting.IssueOrderSELL","","com.devexperts.in.qatesting.IssueOrderSELL","testIssueOrderSell","testIssueOrderSell()",""
+"passed","Tue Nov 05 16:35:22 GMT 2024","Tue Nov 05 16:35:24 GMT 2024","2099","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
+"passed","Tue Nov 05 16:35:21 GMT 2024","Tue Nov 05 16:35:22 GMT 2024","1373","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithWrongCredentials","testLoginWithWrongCredentials()",""
+"passed","Tue Nov 05 16:28:52 GMT 2024","Tue Nov 05 16:35:11 GMT 2024","378463","","com.devexperts.in.qatesting.IssueOrderBUY","","com.devexperts.in.qatesting.IssueOrderBUY","testIssueOrderBuy","testIssueOrderBuy()",""
