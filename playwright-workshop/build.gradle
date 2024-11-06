@@ -9,16 +9,33 @@ repositories {
     mavenCentral()
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+        force 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+        force 'org.junit.jupiter:junit-platform-launcher:1.10.2'
+    }
+}
+
 dependencies {
     // Junit 5 test engine
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion") {
+        exclude group: 'org.junit.platform', module: 'junit-platform-launcher'
+    }
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion") {
+        exclude group: 'org.junit.platform', module: 'junit-platform-launcher'
+    }
+
+    // Explicitly specify the desired version of junit-platform-launcher
+    testImplementation "org.junit.platform:junit-platform-launcher:1.10.2"
 
     // Playwright framework
     implementation "com.microsoft.playwright:playwright:$playwrightVersion"
 
     // Allure report
-    testImplementation "io.qameta.allure:allure-junit5:$allureVersion"
+    testImplementation("io.qameta.allure:allure-junit5:$allureVersion") {
+        exclude group: 'org.junit.platform', module: 'junit-platform-launcher'
+    }
 }
 
 tasks.register('buildDeps', JavaExec) {
@@ -26,7 +43,6 @@ tasks.register('buildDeps', JavaExec) {
     mainClass = 'com.microsoft.playwright.CLI'
     args = ['install-deps']
 }
-
 
 test {
     dependsOn buildDeps
