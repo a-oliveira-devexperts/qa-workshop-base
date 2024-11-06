@@ -26,7 +26,6 @@ public class LoginTests {
 
     @Test
     public void testSuccessfulLogin(){
-        
         LoginPage loginPage = new LoginPage(page);
         loginPage.informUsername(PropertiesProvider.getProperty("test.user"));
         loginPage.informPassword(PropertiesProvider.getProperty("test.password"));
