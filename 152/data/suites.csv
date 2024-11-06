@@ -1,6 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sun Nov 03 14:16:44 GMT 2024","Sun Nov 03 14:16:47 GMT 2024","2432","","com.devexperts.in.qatesting.configuration.LoginTest","","com.devexperts.in.qatesting.configuration.LoginTest","testLoginWithWrongPassword","testLoginWithWrongPassword()",""
-"passed","Sun Nov 03 14:16:50 GMT 2024","Sun Nov 03 14:16:52 GMT 2024","2086","","com.devexperts.in.qatesting.configuration.LoginTest","","com.devexperts.in.qatesting.configuration.LoginTest","testLoginWithWrongUser","testLoginWithWrongUser()",""
-"passed","Sun Nov 03 14:16:49 GMT 2024","Sun Nov 03 14:16:50 GMT 2024","1196","","com.devexperts.in.qatesting.configuration.LoginTest","","com.devexperts.in.qatesting.configuration.LoginTest","testLoginWithoutUserData","testLoginWithoutUserData()",""
-"passed","Sun Nov 03 14:16:47 GMT 2024","Sun Nov 03 14:16:49 GMT 2024","2222","","com.devexperts.in.qatesting.configuration.LoginTest","","com.devexperts.in.qatesting.configuration.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
-"passed","Sun Nov 03 14:16:32 GMT 2024","Sun Nov 03 14:16:32 GMT 2024","15","","com.devexperts.in.qatesting.configuration.ExampleTest","","com.devexperts.in.qatesting.configuration.ExampleTest","example","example()",""
