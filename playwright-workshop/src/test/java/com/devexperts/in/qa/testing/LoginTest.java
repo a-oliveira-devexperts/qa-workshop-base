@@ -26,7 +26,7 @@ public class LoginTest
       //Method to set up Browser and Page
       public void setUp()
         {
-           browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+           browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
            page = browser.newPage();
            page.navigate(PropertiesProvider.getProperty("base.url"));
         }
