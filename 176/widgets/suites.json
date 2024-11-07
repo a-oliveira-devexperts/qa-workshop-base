@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"81fb255b84d55660b97dcc9ff247de30","name":"com.devexperts.in.qatesting.tests.LoginTest","statistic":{"failed":0,"broken":0,"skipped":0,"passed":4,"unknown":0,"total":4}},{"uid":"f5aed52236292068dda5c90d7af89732","name":"com.devexperts.in.qatesting.tests.HomeTests","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}
