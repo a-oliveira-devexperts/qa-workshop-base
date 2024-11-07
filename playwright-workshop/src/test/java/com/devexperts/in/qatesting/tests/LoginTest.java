@@ -4,9 +4,17 @@ import com.devexperts.in.qatesting.configuration.PropertiesProvider;
 import com.devexperts.in.qatesting.pages.HomePage;
 import com.devexperts.in.qatesting.pages.LoginPage;
 import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.*;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+
+import java.util.stream.Stream;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
@@ -28,7 +36,8 @@ public class LoginTest {
 
     @BeforeEach
     public void setUp(){
-        browser = playwright.chromium().launch();
+        //browser = playwright.chromium().launch();
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         page = browser.newPage();
         page.navigate(PropertiesProvider.getProperty("base.url"));
     }
@@ -43,31 +52,20 @@ public class LoginTest {
         assertThat(homePage.getHeaderHomepage()).hasText("Home Test Task");
     }
 
-    @Test
-    public void testLoginWithoutUserData(){
-
-        LoginPage loginPage = new LoginPage(page);
-        loginPage.login("", "");
-
-        assertThat(loginPage.getLoginStatus()).hasText("Please enter valid credentials:");
+    private static Stream<Arguments> userDataAndErrors() {
+        return Stream.of(
+                Arguments.of("", "", "Please enter valid credentials:"),
+                Arguments.of(USERNAME_WRONG_DATA, PASSWORD_WRONG_DATA, "Wrong user! User " + USERNAME_WRONG_DATA + " not found."),
+                Arguments.of(USERNAME_DATA, PASSWORD_WRONG_DATA, "Wrong password! Correct password is: " + PASSWORD_DATA)
+        );
     }
 
-    @Test
-    public void testLoginWithWrongUser(){
-
+    @ParameterizedTest
+    @MethodSource("userDataAndErrors")
+    void testLoginErrors(String username, String password, String error){
         LoginPage loginPage = new LoginPage(page);
-        loginPage.login(USERNAME_WRONG_DATA, PASSWORD_WRONG_DATA);
-
-        assertThat(loginPage.getLoginStatus()).hasText("Wrong user! User " + USERNAME_WRONG_DATA + " not found.");
-    }
-
-    @Test
-    public void testLoginWithWrongPassword(){
-
-        LoginPage loginPage = new LoginPage(page);
-        loginPage.login(USERNAME_DATA, PASSWORD_WRONG_DATA);
-
-        assertThat(loginPage.getLoginStatus()).hasText("Wrong password! Correct password is: " + PASSWORD_DATA);
+        loginPage.login(username, password);
+        assertThat(loginPage.getLoginStatus()).hasText(error);
     }
 
     @AfterEach

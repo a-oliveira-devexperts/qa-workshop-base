@@ -46,8 +46,6 @@ public class LoginPage {
         clickLogin();
     }
 
-    // Login Status Checks (aka error messages)
-
     public Locator getLoginStatus(){
         return page.locator(LOGIN_STATUS);
     }
