@@ -4,7 +4,6 @@ import com.devexperts.in.qatesting.configuration.PropertiesProvider;
 import com.devexperts.in.qatesting.pages.HomePage;
 import com.devexperts.in.qatesting.pages.LoginPage;
 import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.*;
@@ -36,8 +35,7 @@ public class LoginTest {
 
     @BeforeEach
     public void setUp(){
-        //browser = playwright.chromium().launch();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser = playwright.chromium().launch();
         page = browser.newPage();
         page.navigate(PropertiesProvider.getProperty("base.url"));
     }
