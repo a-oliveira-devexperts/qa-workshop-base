@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BalanceTest {
     private static Playwright playwright;
-    private Browser browser;
     private Page page;
     private static final String USERNAME_DATA = PropertiesProvider.getProperty("test.user");
     private static final String PASSWORD_DATA = PropertiesProvider.getProperty("test.password");
@@ -20,7 +19,7 @@ public class BalanceTest {
 
     @BeforeEach
     public void setUp(){
-        browser = playwright.chromium().launch();
+        Browser browser = playwright.chromium().launch();
         page = browser.newPage();
         page.navigate(PropertiesProvider.getProperty("base.url"));
     }
