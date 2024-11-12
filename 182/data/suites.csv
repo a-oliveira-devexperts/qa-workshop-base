@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Nov 12 10:22:36 GMT 2024","Tue Nov 12 10:22:38 GMT 2024","2233","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
+"passed","Tue Nov 12 10:22:34 GMT 2024","Tue Nov 12 10:22:36 GMT 2024","2224","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithWrongCredentials","testLoginWithWrongCredentials()",""
+"passed","Tue Nov 12 10:22:32 GMT 2024","Tue Nov 12 10:22:34 GMT 2024","2095","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithWrongPassword","testLoginWithWrongPassword()",""
+"passed","Tue Nov 12 10:22:38 GMT 2024","Tue Nov 12 10:22:41 GMT 2024","2117","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithWrongUsername","testLoginWithWrongUsername()",""
+"passed","Tue Nov 12 10:22:29 GMT 2024","Tue Nov 12 10:22:32 GMT 2024","2969","","com.devexperts.in.qatesting.BalanceTest","","com.devexperts.in.qatesting.BalanceTest","testBalanceEqualInitial","testBalanceEqualInitial()",""
