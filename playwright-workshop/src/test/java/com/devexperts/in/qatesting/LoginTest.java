@@ -65,15 +65,15 @@ public class LoginTest {
     }
 
     @Test
-    public void testLoginWithEmptyCredentials(){
+    public void testLoginWithWrongUsername(){
         LoginPage loginPage = new LoginPage(page);
         loginPage.informUsername(USERNAME_WRONG_DATA);
         loginPage.informPassword(PASSWORD_DATA);
         loginPage.clickLogin();
         Locator loginStatus = page.locator("#login-status");
-        assertAll("Login Empty Credentials",
+        assertAll("Login Wrong Username",
                 ()->assertThat(loginStatus).isVisible(),
-                ()->assertThat(loginStatus).hasText("Please enter valid credentials:"));
+                ()->assertThat(loginStatus).hasText("Wrong user! User a; not found."));
     }
 
     @AfterEach
