@@ -21,7 +21,7 @@ public class HomePage
     @BeforeEach
     public void setUp()
       {
-         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+         browser = playwright.chromium().launch();
          page = browser.newPage();
          page.navigate(PropertiesProvider.getProperty("base.url"));
       }
