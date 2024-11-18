@@ -58,6 +58,14 @@ public class LoginTest
             return loginPage;
         }
 
+      public LoginPage Login2()
+      {
+          LoginPage loginPage=new LoginPage(page);
+          loginPage.clickLogin();
+          return loginPage;
+      }
+
+
       @Test
       public void testSuccessfulLogin()
         {
@@ -68,13 +76,11 @@ public class LoginTest
       public void testLoginWithWrongCredentials()
          {
 
-             String username="";
+
+             PlaywrightAssertions.assertThat(Login2().getLoginStatus()).hasText("Please enter valid credentials:");
+
+             String username="X";
              String password="";
-
-             PlaywrightAssertions.assertThat(Login(username,password).getLoginStatus()).hasText("Please enter valid credentials:");
-
-             username="X";
-             password="";
 
              PlaywrightAssertions.assertThat(Login(username, password).getLoginStatus()).hasText("Please enter valid credentials:");
 
