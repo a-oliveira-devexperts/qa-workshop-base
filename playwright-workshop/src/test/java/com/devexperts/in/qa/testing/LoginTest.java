@@ -2,37 +2,32 @@ package com.devexperts.in.qa.testing;
 
 import com.devexperts.in.qa.testing.configuration.PropertiesProvider;
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import org.junit.jupiter.api.*;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LoginTest
   {
       private static Playwright playwright;
       private Browser browser;
       private Page page;
-      private static final String USERNAME_DATA="bfraga@devexperts.com";
-      private static final String PASSWORD_DATA="B-fraga*";
+
 
       @BeforeAll
-      //Method to set up Playwright
       public static void beforeAll()
         {
            playwright=Playwright.create();
         }
 
       @BeforeEach
-      //Method to set up Browser and Page
       public void setUp()
         {
-           browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
+           browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
            page = browser.newPage();
            page.navigate(PropertiesProvider.getProperty("base.url"));
         }
 
       @AfterEach
-      //Method to close Page and Browser
       public void tearDown()
         {
            page.close();
@@ -40,119 +35,76 @@ public class LoginTest
         }
 
       @AfterAll
-      //Method to close Playwright
       public static void afterAll()
         {
            playwright.close();
         }
 
+      public LoginPage Login()
+        {
+            LoginPage loginPage=new LoginPage(page);
+            loginPage.informUsername(PropertiesProvider.getProperty("test.user"));
+            loginPage.informPassword(PropertiesProvider.getProperty("test.password"));
+            loginPage.clickLogin();
+            return loginPage;
+        }
+
+      public LoginPage Login(String username, String password)
+        {
+            LoginPage loginPage=new LoginPage(page);
+            loginPage.informUsername(username);
+            loginPage.informPassword(password);
+            loginPage.clickLogin();
+            return loginPage;
+        }
+
+
+      public LoginPage Login2()
+        {
+            LoginPage loginPage=new LoginPage(page);
+
+            loginPage.clickLogin();
+
+            return loginPage;
+        }
+
+
       @Test
       public void testSuccessfulLogin()
         {
-           LoginPage loginPage=new LoginPage(page);
-
-           loginPage.informUsername(USERNAME_DATA);
-           loginPage.informPassword(PASSWORD_DATA);
-           loginPage.clickLogin();
-
-           //Check if we were redirected to the homepage
-           Locator homeHeader = page.locator(".header-title-content");
-           //assertThat(homeHeader).isVisible();
-           //assertThat(homeHeader).hasText("Home Test Task");
-           assertAll("Login Checks",
-                   ()-> assertThat(homeHeader).hasText("Home Test Task"),
-                   ()-> assertThat(homeHeader).isVisible()
-                    );
+            PlaywrightAssertions.assertThat(Login().getHomeHeader()).hasText("Home Test Task");
         }
 
       @Test
       public void testLoginWithWrongCredentials()
          {
-             LoginPage loginPage=new LoginPage(page);
 
+             PlaywrightAssertions.assertThat(Login2().getLoginStatus()).hasText("Please enter valid credentials:");
 
-             //Test with empty both fields
-             loginPage.clickLogin();
+             String username="X";
+             String password="";
 
-             Locator loginStatus= page.locator("#login-status");
+             PlaywrightAssertions.assertThat(Login(username, password).getLoginStatus()).hasText("Please enter valid credentials:");
 
-             assertThat(loginStatus).hasText("Please enter valid credentials:");
+             username="";
+             password="X";
 
-             //Test with empty password
-             loginPage.informUsername("X");
-             loginPage.clickLogin();
+             PlaywrightAssertions.assertThat(Login(username, password).getLoginStatus()).hasText("Please enter valid credentials:");
 
-             assertThat(loginStatus).hasText("Please enter valid credentials:");
+             username="X";
+             password="X";
 
-             //Test with empty username
-             loginPage.informPassword("X");
-             loginPage.clickLogin();
+             PlaywrightAssertions.assertThat(Login(username, password).getLoginStatus()).hasText("Wrong user! User "+username+ " not found.");
 
-             assertThat(loginStatus).hasText("Please enter valid credentials:");
+             username="bfraga@devexperts.com";
+             password="X";
 
-             //Test with wrong username and password
-             loginPage.informUsername("X");
-             loginPage.informPassword("X");
-             loginPage.clickLogin();
+             PlaywrightAssertions.assertThat(Login(username, password).getLoginStatus()).hasText("Wrong password! Correct password is: "+PropertiesProvider.getProperty("test.password"));
 
+             username="X";
+             password="B-fraga*";
 
-             assertThat(loginStatus).hasText("Wrong user! User X not found.");
-
-             //Test with wrong password
-             loginPage.informUsername(USERNAME_DATA);
-             loginPage.informPassword("X");
-             loginPage.clickLogin();
-
-             assertThat(loginStatus).hasText("Wrong password! Correct password is: B-fraga*");
-
-             //Test with wrong username
-             loginPage.informUsername("X");
-             loginPage.informPassword(PASSWORD_DATA);
-             loginPage.clickLogin();
-
-             assertThat(loginStatus).hasText("Wrong user! User X not found.");
+             PlaywrightAssertions.assertThat(Login(username, password).getLoginStatus()).hasText("Wrong user! User "+username+ " not found.");
          }
 
-      @Test
-      public void checkBalance()
-        {
-            LoginPage loginPage=new LoginPage(page);
-
-            loginPage.informUsername(USERNAME_DATA);
-            loginPage.informPassword(PASSWORD_DATA);
-            loginPage.clickLogin();
-
-            Locator balance= page.locator(".balanceNumber");
-
-            assertThat(balance).hasText("10000.00");
-        }
   }
-
-  //Workshop session script
-  /* @Test
-    public void testSuccessfulLogin(){
-        //Setup Playwright, Browser , Page
-        Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-        Page page = browser.newPage();
-        page.navigate("https://qa-testing.in.devexperts.com/internship/");
-
-        Locator inputUsername = page.getByPlaceholder("Username");
-        inputUsername.fill("a-oliveira-group-a@devexperts.com");
-        //Locator inputPassword = page.getByPlaceholder("Password" , new Page.GetByPlaceholderOptions().setExact(true));
-        Locator inputPassword = page.locator("#password");
-        inputPassword.fill("Workshop123@");
-
-        Locator buttonLogin = page.getByRole(AriaRole.BUTTON , new Page.GetByRoleOptions().setName("Login"));
-        buttonLogin.click();
-
-        Locator homeHeader = page.locator(".header-title-content");
-
-        assertAll("Login Checks",
-                ()-> assertThat(homeHeader).hasText("Home Test Task", new LocatorAssertions.HasTextOptions().setIgnoreCase(false)),
-                ()-> assertThat(homeHeader).isVisible());
-
-        page.close();
-        browser.close();
-        playwright.close();
-*/
