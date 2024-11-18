@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Nov 18 20:15:44 GMT 2024","Mon Nov 18 20:15:50 GMT 2024","6223","","com.devexperts.in.qa.testing.HomePage","","com.devexperts.in.qa.testing.HomePage","checkBalance","checkBalance()",""
+"passed","Mon Nov 18 20:16:00 GMT 2024","Mon Nov 18 20:16:09 GMT 2024","9400","","com.devexperts.in.qa.testing.LoginTest","","com.devexperts.in.qa.testing.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
+"passed","Mon Nov 18 20:15:50 GMT 2024","Mon Nov 18 20:16:00 GMT 2024","9605","","com.devexperts.in.qa.testing.LoginTest","","com.devexperts.in.qa.testing.LoginTest","testLoginWithWrongCredentials","testLoginWithWrongCredentials()",""
