@@ -42,7 +42,7 @@ public class BalanceCheckTest {
         registrationPage.selectDeposit();
         //registrationPage.clickRegister();
         registrationPage.loginAfterRegistration();
-        page.waitForTimeout(3000);
+        page.waitForTimeout(1000);
 
         assertEquals("1000.00", homePage.getBalanceOnHomePage().textContent());
     }

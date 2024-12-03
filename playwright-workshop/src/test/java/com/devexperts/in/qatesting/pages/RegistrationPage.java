@@ -2,6 +2,7 @@ package com.devexperts.in.qatesting.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.WaitForSelectorState;
 
 import java.util.UUID;
 
@@ -42,7 +43,9 @@ public class RegistrationPage {
 
     //Method to locate the Login button after registration
     public Locator getLoginButtonAfterRegistration() {
-        return page.locator(LOGIN_BUTTON_SELECTOR);
+        Locator locator = page.locator(LOGIN_BUTTON_SELECTOR);
+        locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
+        return locator;
     }
 
 
