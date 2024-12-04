@@ -25,7 +25,7 @@ public class BalanceCheckTest {
 
     @BeforeEach
     public void setUp(){
-        browser = playwright.chromium().launch();
+        browser = playwright.chromium().launch((new BrowserType.LaunchOptions().setHeadless(false)));
         page = browser.newPage();
         page.navigate(PropertiesProvider.getProperty("base.url"));
     }
@@ -40,7 +40,7 @@ public class BalanceCheckTest {
         registrationPage.provideDesiredUsername(NEW_USERNAME);
         registrationPage.provideDesiredPassword(PASSWORD);
         registrationPage.selectDeposit();
-        //registrationPage.clickRegister();
+        registrationPage.clickRegister();
         registrationPage.loginAfterRegistration();
         page.waitForTimeout(1000);
 

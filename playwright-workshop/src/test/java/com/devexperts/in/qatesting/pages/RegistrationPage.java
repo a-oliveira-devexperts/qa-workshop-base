@@ -2,9 +2,12 @@ package com.devexperts.in.qatesting.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
 import java.util.UUID;
+import java.util.regex.Pattern;
+
 
 public class RegistrationPage {
     Page page;
@@ -14,8 +17,7 @@ public class RegistrationPage {
     private static final String DESIRED_BALANCE_SELECTOR = "#desiredDeposit";
     private static final String LOGIN_BUTTON_SELECTOR = "#login-button";
 
-
-    public RegistrationPage(Page page) {
+    public RegistrationPage(Page page){
         this.page = page;
     }
 
@@ -41,6 +43,7 @@ public class RegistrationPage {
         return page.locator(REGISTER_BUTTON_SELECTOR);
     }
 
+
     //Method to locate the Login button after registration
     public Locator getLoginButtonAfterRegistration() {
         Locator locator = page.locator(LOGIN_BUTTON_SELECTOR);
@@ -62,9 +65,7 @@ public class RegistrationPage {
 
     //Method to choose the deposit
     public void selectDeposit() {
-        getDesiredBalanceField().click(new Locator.ClickOptions().setForce(true));
         getDesiredBalanceField().selectOption("1.000 BCC");
-        page.keyboard().press("Enter");
     }
 
     //Method for clicking the Register button
