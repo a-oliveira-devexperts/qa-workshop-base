@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Mar 13 15:30:59 GMT 2025","Thu Mar 13 15:30:59 GMT 2025","14","","org.example.ExampleTest","","org.example.ExampleTest","example","example()",""
