@@ -31,3 +31,4 @@ public class LoginTest {
         playwright.close();
     }
 }
+
