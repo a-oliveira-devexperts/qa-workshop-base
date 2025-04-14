@@ -62,7 +62,6 @@ public class LoginTest {
     }
 
 
-
     @AfterEach
     public void tearDown(){
         page.close();

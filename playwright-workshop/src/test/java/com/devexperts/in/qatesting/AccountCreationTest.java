@@ -4,6 +4,7 @@ import com.devexperts.in.qatesting.configuration.PropertiesProvider;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.*;
+import com.microsoft.playwright.Page;
 
 import java.util.Random;
 import java.util.UUID;
@@ -77,6 +78,9 @@ public class AccountCreationTest {
                 .setState(WaitForSelectorState.VISIBLE));
 
         String displayedBalance = homeBalance.textContent().trim().replace(".", "");
+
+        System.out.println(" Selected balance (from registration): " + selectedBalance);
+        System.out.println(" Displayed balance (after login): " + displayedBalance);
 
         assertAll("Check Balance",
                 () -> assertNotNull(displayedBalance),
