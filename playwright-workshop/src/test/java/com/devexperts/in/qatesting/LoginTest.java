@@ -14,9 +14,9 @@ public class LoginTest {
     private Browser browser;
     private Page page;
     private static final String USERNAME_DATA = "vsousa@devexperts.com";
-    private static final String PASSWORD_DATA = "198881^^ZXcvb";
+    private static final String PASSWORD_DATA = "1234567^^Abcde";
     private static final String INCORRECT_USERNAME_DATA = "vsou@devexperts.com";
-    private static final String INCORRECT_PASSWORD_DATA = "123456^^ASdfg";
+    private static final String INCORRECT_PASSWORD_DATA = "123996^^ASdfg";
 
 
     @BeforeAll

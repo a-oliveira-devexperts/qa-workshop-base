@@ -38,5 +38,4 @@ public class LoginPage {
         getButtonLogin().click();
     }
 
-
 }
