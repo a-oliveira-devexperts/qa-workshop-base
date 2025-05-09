@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Fri May 09 09:36:57 GMT 2025","Fri May 09 09:37:27 GMT 2025","30218","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testLoginWithWrongCredentials","testLoginWithWrongCredentials()",""
+"broken","Fri May 09 09:37:27 GMT 2025","Fri May 09 09:37:57 GMT 2025","30238","","com.devexperts.in.qatesting.LoginTest","","com.devexperts.in.qatesting.LoginTest","testSuccessfulLogin","testSuccessfulLogin()",""
+"broken","Fri May 09 09:36:26 GMT 2025","Fri May 09 09:36:56 GMT 2025","30449","","com.devexperts.in.qatesting.AccountCreationTest","","com.devexperts.in.qatesting.AccountCreationTest","testAccountCreationAndBalanceVerification","testAccountCreationAndBalanceVerification()",""
