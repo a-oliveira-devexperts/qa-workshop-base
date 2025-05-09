@@ -44,7 +44,11 @@ public class AccountCreationTest {
     public void setUp(){
         browser = playwright.chromium().launch();
         page = browser.newPage();
-        page.navigate(PropertiesProvider.getProperty("base.url"));
+
+        System.out.println("Navigating to: " + PropertiesProvider.getProperty("base.url"));
+        page.navigate(PropertiesProvider.getProperty("base.url"),
+                new Page.NavigateOptions().setTimeout(60000));
+
         generatedEmail = generateRandomEmail();
         generatedPhone = generatePortuguesePhone();
     }
