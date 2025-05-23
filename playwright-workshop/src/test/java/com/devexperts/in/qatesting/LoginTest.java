@@ -22,7 +22,7 @@ public class LoginTest {
     public void setUp(){
         browser = playwright.chromium().launch();
         page = browser.newPage();
-        page.navigate("https://qa-testing.in.devexperts.com/internship/");
+        page.navigate("https://qa-testing.in.devexperts.com:7691/");
     }
 
     @Test
